@@ -1,0 +1,133 @@
+@(title: String)(content: Html)
+
+
+<!DOCTYPE html><html class=''>
+    <head>
+        <link href='https://fonts.googleapis.com/css?family=Lato:300,400' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
+        <link rel="stylesheet" type="text/css" href="@routes.Assets.at("stylesheets/main.css")">
+        <script src='//production-assets.codepen.io/assets/editor/live/console_runner-079c09a0e3b9ff743e39ee2d5637b9216b3545af0de366d4b9aad9dc87e26bfd.js'></script><script src='//production-assets.codepen.io/assets/editor/live/events_runner-73716630c22bbc8cff4bd0f07b135f00a0bdc5d14629260c3ec49e5606f98fdd.js'></script><script src='//production-assets.codepen.io/assets/editor/live/css_live_reload_init-2c0dc5167d60a5af3ee189d570b1835129687ea2a61bee3513dee3a50c115a77.js'></script><meta charset='UTF-8'><meta name="robots" content="noindex"><link rel="shortcut icon" type="image/x-icon" href="//production-assets.codepen.io/assets/favicon/favicon-8ea04875e70c4b0bb41da869e81236e54394d63638a1ef12fa558a4a835f1164.ico" /><link rel="mask-icon" type="" href="//production-assets.codepen.io/assets/favicon/logo-pin-f2d2b6d2c61838f7e76325261b7195c27224080bc099486ddd6dccb469b8e8e6.svg" color="#111" /><link rel="canonical" href="https://codepen.io/soulrider911/pen/ugnyl?limit=all&page=5&q=form" />
+    </head>
+    <body>
+        <header>
+            <h1><i class="fa fa-book"></i> Meu Livro! <span>Ou seu</span> <i class="fa fa-book"></i></h1>
+            <p>Aqui temos o livro ideal para sua leitura!</p>
+        </header>
+        <form action="">
+                <!--  Nome -->
+            <div class="form-group">
+                <h2 class="heading">Nome</h2>
+                <div class="controls">
+                    <input type="tel" id="nome" class="floatLabel" name="nome">
+                </div>
+            </div>
+                <!--  Nome -->
+            <div class="form-group">
+                <h2 class="heading">Idade</h2>
+                <div class="controls">
+                    <i class="fa fa-calendar"></i>
+                    <input type="tel" id="idade" class="floatLabel" name="idade">
+                </div>
+            </div>
+                <!--  General -->
+            <div class="form-group">
+                <h2 class="heading">Literatura</h2>
+                <div class="controls">
+                    <i class="fa fa-sort"></i>
+                    <select class="floatLabel">
+                        <option value="Brasileira">Brasileira</option>
+                        <option value="Internacional">Internacional</option>
+                    </select>
+                </div>
+            </div>
+                <!--  Details -->
+            <div class="form-group">
+                <h2 class="heading">Leitura para</h2>
+                <div class="controls">
+                    <i class="fa fa-sort"></i>
+                    <select class="floatLabel">
+                        <option value="Estudo">Estudo</option>
+                        <option value="Lazer">Lazer</option>
+                    </select>
+                </div>
+            </div>
+                <!--  Details -->
+            <div class="form-group">
+                <h2 class="heading">Lazer</h2>
+                <div class="controls">
+                    <i class="fa fa-sort"></i>
+                    <select class="floatLabel">
+                        <option value="Aventura">Aventura</option>
+                        <option value="Biografia">Biografia</option>
+                        <option value="Contos">Contos</option>
+                        <option value="Cronicas">Cronicas</option>
+                        <option value="Fantasia">Fantasia</option>
+                        <option value="Ficçao Cientifica">Ficçao Cietifica</option>
+                        <option value="Ficçao Historica">Ficçao Historica</option>
+                        <option value="Infantojuvenis">Infantojuvenis</option>
+                        <option value="Infantis">Infantis</option>
+                        <option value="Poesia">Poesia</option>
+                        <option value="Romance">Romance</option>
+                    </select>
+                </div>
+            </div>
+                <!--  Details -->
+            <div class="form-group">
+                <h2 class="heading">Estudo</h2>
+                <div class="controls">
+                    <i class="fa fa-sort"></i>
+                    <select class="floatLabel">
+                        <option value="Administraçao">Administraçao</option>
+                        <option value="Agropecuaria">Agropecuaria</option>
+                        <option value="Artes">Artes</option>
+                        <option value="Ciencias Biologicas">Ciencias Biologicas</option>
+                        <option value="Ciencias Exatas">Ciencias Exatas</option>
+                        <option value="Ciencias Humanas e Sociais">Ciencias Humanas e Sociais</option>
+                        <option value="Contabilidade">Contabilidade</option>
+                        <option value="Direito">Direito</option>
+                        <option value="Economia">Economia</option>
+                        <option value="Engenharia e Tecnologia">Engenharia e Tecnologia</option>
+                        <option value="Geografia e Historia">Geografia e Historia</option>
+                        <option value="Informatica">Informatica</option>
+                        <option value="Linguistica">Linguistica</option>
+                        <option value="Medicina">Medicina</option>
+                        <option value="Psicologia e Psicanalise">Psicologia e Psicanalise</option>
+                    </select>
+                </div>
+            </div>
+                <!--  More -->
+            <div class="form-group">
+                <h2 class="heading">Mensagem!</h2>
+                <div class="controls">
+                    <textarea name="Comentario" class="floatLabel" id="Comentario"></textarea>
+                    <label for="Comentario">Comentario</label>
+                    <form method="POST" action="/brasileira">
+                        <button type="submit">ENVIAR</button>
+                    </form>
+                </div>
+            </div>
+        </form>
+        <script src='//production-assets.codepen.io/assets/common/stopExecutionOnTimeout-b2a7b3fe212eaa732349046d8416e00a9dec26eb7fd347590fbced3ab38af52e.js'></script><script src='//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+        <script >(function($){
+            function floatLabel(inputType){
+                $(inputType).each(function(){
+                    var $this = $(this);
+                    // on focus add cladd active to label
+                    $this.focus(function(){
+                        $this.next().addClass("active");
+                    });
+                    //on blur check field and remove class if needed
+                    $this.blur(function(){
+                        if($this.val() === '' || $this.val() === 'blank'){
+                            $this.next().removeClass();
+                        }
+                    });
+                });
+            }
+            // just add a class of "floatLabel to the input field!"
+            floatLabel(".floatLabel");
+        })(jQuery);
+        //# sourceURL=pen.js
+        </script>
+    </body>
+</html>
