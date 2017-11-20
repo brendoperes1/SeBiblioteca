@@ -12,13 +12,18 @@
     </header>
     <form method="POST" action="">
         <!--  Nome -->
-      <<div class="form-group">
+      <div class="form-group">
       <h2 class="heading">Autores</h2>
       <div class="">
-        <input type="checkbox" name="check_list[1]" id="autor1" value="Autor 1">AUTOR 1
-        <input type="checkbox" name="check_list[2]" id="autor2" value="Autor 2">AUTOR 2
-        <input type="checkbox" name="check_list[3]" id="autor3" value="Autor 3">AUTOR 3
-        <input type="checkbox" name="check_list[4]" id="autor4" value="Autor 4">AUTOR 4
+        <input type="checkbox" name="check_list[1]" id="autor1" value="MachadoDeAssis">Machado De Assis
+        <input type="checkbox" name="check_list[2]" id="autor2" value="JorgeAmado">Jorge Amado
+        <input type="checkbox" name="check_list[3]" id="autor3" value="EricoVerissimo">Érico Veríssimo
+        <input type="checkbox" name="check_list[4]" id="autor4" value="JoseDeAlencar">José De Alencar
+        <input type="checkbox" name="check_list[4]" id="autor5" value="GracilianoRamos">Graciliano Ramos
+        <input type="checkbox" name="check_list[4]" id="autor6" value="AluisoDeAzevedo">Aluísio de Azevedo
+        <input type="checkbox" name="check_list[4]" id="autor7" value="ViscondeDeTaunay">Visconde de Taunay
+        <input type="checkbox" name="check_list[4]" id="autor8" value="LimaBarreto">Lima Barreto
+        <input type="checkbox" name="check_list[4]" id="autor9" value="MarceloRubensPaiva">Marcelo Rubens Paiva
       </div>
 
 
@@ -63,7 +68,46 @@
             console.log("desmarcou4 ")
           }
         })
+         var autor5 = false;
+        document.getElementById("autor5").addEventListener("click", function(){
+          autor5 = !autor5;
 
+          if(autor5){
+            console.log("marcou5")
+          }else{
+            console.log("desmarcou5 ")
+          }
+        })
+        var autor6 = false;
+        document.getElementById("autor4").addEventListener("click", function(){
+          autor6 = !autor6;
+
+          if(autor6){
+            console.log("marcou6")
+          }else{
+            console.log("desmarcou6")
+          }
+        })
+        var autor7 = false;
+        document.getElementById("autor7").addEventListener("click", function(){
+          autor7 = !autor7;
+
+          if(autor7){
+            console.log("marcou7")
+          }else{
+            console.log("desmarcou7 ")
+          }
+        })
+        var autor8 = false;
+        document.getElementById("autor8").addEventListener("click", function(){
+          autor8 = !autor8;
+
+          if(autor8){
+            console.log("marcou8")
+          }else{
+            console.log("desmarcou8 ")
+          }
+        })
 
       </script>
         <!--  Details -->
@@ -72,15 +116,9 @@
         <div class="controls">
           <i class="fa fa-sort"></i>
           <select class="floatLabel">
-            <option value="Aventura">Aventura</option>
-            <option value="Biografia">Biografia</option>
             <option value="Contos">Contos</option>
             <option value="Cronicas">Cronicas</option>
-            <option value="Fantasia">Fantasia</option>
-            <option value="Ficçao Cientifica">Ficçao Cietifica</option>
-            <option value="Ficçao Historica">Ficçao Historica</option>
-            <option value="Infantojuvenis">Infantojuvenis</option>
-            <option value="Infantis">Infantis</option>
+            <option value="Infantojuvenis">Infanto juvenis</option>
             <option value="Poesia">Poesia</option>
             <option value="Romance">Romance</option>
           </select>
@@ -102,17 +140,20 @@
       <div class="form-group">
         <h2 class="heading">Livros Relacionados</h2>
         <div class="controls">
-          <input type="checkbox" name="check_list[1]" value="livro 1">O teorema de Katherine
-          <input type="checkbox" name="check_list[2]" value="livro 2">A Seleçao
-          <input type="checkbox" name="check_list[3]" value="livro 3">Uma curva na Estrada
-          <input type="checkbox" name="check_list[4]" value="livro 4">Dom casmurro
-          <input type="checkbox" name="check_list[5]" value="livro 5">Luciola
-          <input type="checkbox" name="check_list[6]" value="livro 6">Harry Potter
+          <input type="checkbox" name="check_list[1]" value="DomCasmurro">Dom casmurro
+          <input type="checkbox" name="check_list[2]" value="CapitaesDaAreia">Capitães da Areia
+          <input type="checkbox" name="check_list[3]" value="OTempoeoVento">O tempo e vento
+          <input type="checkbox" name="check_list[4]" value="Iracema">Iracema
+          <input type="checkbox" name="check_list[5]" value="VidasSecas">Vidas secas
+          <input type="checkbox" name="check_list[6]" value="OCortico">O cortiço
+          <input type="checkbox" name="check_list[7]" value="Inocencia">Inocência
+          <input type="checkbox" name="check_list[8]" value="ClaraDosAnjos">Clara dos Anjos
+          <input type="checkbox" name="check_list[9]" value="FelizAnoVelho">Feliz ano velho
         </div>
       </div>
         <div class="controls">
           <form method="POST" action="/brasileira">
-            <button type="submit">ENVIAR</button>
+            <button  type="submit">ENVIAR</button>
           </form>
         </div>
     </form>
