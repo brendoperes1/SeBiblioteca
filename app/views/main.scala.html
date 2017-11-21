@@ -3,10 +3,16 @@
 
 <!DOCTYPE html><html class=''>
     <head>
+        <title>Meu livro! ou o seu!</title>
         <link href='https://fonts.googleapis.com/css?family=Lato:300,400' rel='stylesheet' type='text/css'>
         <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
-        <link rel="stylesheet" type="text/css" href="@routes.Assets.at("stylesheets/main.css")">
-        <script src='//production-assets.codepen.io/assets/editor/live/console_runner-079c09a0e3b9ff743e39ee2d5637b9216b3545af0de366d4b9aad9dc87e26bfd.js'></script><script src='//production-assets.codepen.io/assets/editor/live/events_runner-73716630c22bbc8cff4bd0f07b135f00a0bdc5d14629260c3ec49e5606f98fdd.js'></script><script src='//production-assets.codepen.io/assets/editor/live/css_live_reload_init-2c0dc5167d60a5af3ee189d570b1835129687ea2a61bee3513dee3a50c115a77.js'></script><meta charset='UTF-8'><meta name="robots" content="noindex"><link rel="shortcut icon" type="image/x-icon" href="//production-assets.codepen.io/assets/favicon/favicon-8ea04875e70c4b0bb41da869e81236e54394d63638a1ef12fa558a4a835f1164.ico" /><link rel="mask-icon" type="" href="//production-assets.codepen.io/assets/favicon/logo-pin-f2d2b6d2c61838f7e76325261b7195c27224080bc099486ddd6dccb469b8e8e6.svg" color="#111" /><link rel="canonical" href="https://codepen.io/soulrider911/pen/ugnyl?limit=all&page=5&q=form" />
+        <script src="@routes.Assets.at("javascripts/jquery-1.9.0.min.js")" type="text/javascript"></script>
+        <link rel="stylesheet" type="text/css" href="@routes.Assets.at("stylesheets/extrangeira.css")">
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+        <script src="@routes.Assets.at("javascripts/jquery-1.9.0.min.js")" type="text/javascript"></script>
+        <!--<script src='//production-assets.codepen.io/assets/editor/live/console_runner-079c09a0e3b9ff743e39ee2d5637b9216b3545af0de366d4b9aad9dc87e26bfd.js'></script><script src='//production-assets.codepen.io/assets/editor/live/events_runner-73716630c22bbc8cff4bd0f07b135f00a0bdc5d14629260c3ec49e5606f98fdd.js'></script><script src='//production-assets.codepen.io/assets/editor/live/css_live_reload_init-2c0dc5167d60a5af3ee189d570b1835129687ea2a61bee3513dee3a50c115a77.js'></script><meta charset='UTF-8'><meta name="robots" content="noindex"><link rel="shortcut icon" type="image/x-icon" href="//production-assets.codepen.io/assets/favicon/favicon-8ea04875e70c4b0bb41da869e81236e54394d63638a1ef12fa558a4a835f1164.ico" /><link rel="mask-icon" type="" href="//production-assets.codepen.io/assets/favicon/logo-pin-f2d2b6d2c61838f7e76325261b7195c27224080bc099486ddd6dccb469b8e8e6.svg" color="#111" /><link rel="canonical" href="https://codepen.io/soulrider911/pen/ugnyl?limit=all&page=5&q=form" />-->
     </head>
     <body>
         <header>
@@ -31,20 +37,81 @@
             </div>
                 <!--  General -->
             <div class="form-group">
-                <h2 class="heading">Literatura</h2>
-                <div class="controls">
-                    <i class="fa fa-sort"></i>
-                    <select class="floatLabel">
-                        <option value="Brasileira">Brasileira</option>
-                        <option value="Internacional">Internacional</option>
-                    </select>
+                <h2 class="heading">Genero</h2>
+                <div class="row">
+                    <div class="controls2">
+                        <select class="floatLabel col-md-4">
+                            <option value="poesia">Poesia</option>
+                            <option value="americana">Poesia Americana</option>
+                            <option value="inglesa">Poesia Inglesa</option>
+                            <option value="alema">Poesia Alemã</option>
+                            <option value="francesa">Poesia Francesa</option>
+                            <option value="italiana">Poesia Italiana</option>
+                            <option value="espanhola">Poesia Espanhola</option>
+                            <option value="alema">Poesia Alemã</option>
+                            <option value="port_brasil">Poesia Portuguesa e Brasileira</option>
+                            <option value="latina">Poesia Épica Latina</option>
+                            <option value="grega">Poesia Épica Grega</option>
+                        </select>
+                        <select class="floatLabel col-md-4">
+                            <option value="contos">Contos</option>
+                            <option value="cont_ingleses">Conto Ingleses</option>
+                            <option value="cont_italiano">Conto Italiano</option>
+                            <option value="cont_brasileiro">Conto Brasileiro</option>
+                        </select>
+                        <select class="floatLabel col-md-4">
+                            <option value="ficção">Ficção Americana</option>
+                            <option value="fic_crit_interp">Ficção Crítica e Interpretação</option>
+                            <option value="fic_tec">Ficção Técnica</option>
+                            <option value="fic_hist_crit">Ficção História e Crítica</option>
+                            <option value="fic_pol_usa">Ficção Americana Policial</option>
+                            <option value="fic_cient_usa">Ficção Científica Americana</option>
+                            <option value="fic_uk">Ficção Inglesa</option>
+                            <option value="fic_pol_uk">Ficção Policia Inglesa</option>
+                            <option value="fic_alema">Ficção Alemã</option>
+                            <option value="fic_francesa">Ficção Francesa</option>
+                            <option value="fic_italiana">Ficção Italiana</option>
+                            <option value="fic_espanhola">Ficção Espanhola</option>
+                            <option value="fic_portuguesa">Ficção Portuguesa</option>
+                            <option value="fic_russa">Ficção Russa</option>
+                        </select>
+                        <select class="floatLabel col-md-4">
+                            <option value="lit_fil_teo">Literatura - Filosofia e Teoria</option>
+                            <option value="lit_fil">Literatura - Filosofia</option>
+                            <option value="lit_estetica">Literatura - Estética</option>
+                            <option value="lit_est_ens">Literatura - Estudo e Ensino</option>
+                            <option value="lit_hist_crit">Literatura - História e Crítica</option>
+                            <option value="lit_inf_juv">Literatura Infanto-Juvenil</option>
+                            <option value="lit_usa">Literatura Americana</option>
+                            <option value="lit_est_ens">Literatura - Estudo e Ensino</option>
+                            <option value="lit_uk">Literatura Inglesa</option>
+                            <option value="lit_italiana">Literatura Italiana</option>
+                            <option value="lit_port">Literatura Portuguesa</option>
+                            <option value="lit_br_port">Literatura Brasileira e Portuguesa</option>
+                            <option value="lit_br">Literatura Brasileira - Ensaios</option>
+                        </select>
+                    </div>
                 </div>
             </div>
+            <div>
+                    <!--  Details -->
+                <div class="form-group">
+                    <h2 class="heading">Numero de Paginas</h2>
+                    <div class="controls">
+                        <i class="fa fa-sort"></i>
+                        <select class="floatLabel">
+                            <option value="indiferente">Indiferente</option>
+                            <option value="pequeno">0 - 199</option>
+                            <option value="medio">200 - 399</option>
+                            <option value="grande">400 +</option>
+                        </select>
+                    </div>
+                </div>
                 <!--  More -->
             <div class="form-group">
                 <div class="controls">
                     <form method="POST" action="/brasileira">
-                        <button type="submit">ENVIAR</button>
+                        <button type="submit">OK</button>
                     </form>
                 </div>
             </div>

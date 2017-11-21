@@ -2,12 +2,20 @@ function SelecionaAutores() {
     console.log("foi")
     var listaDeAutores = [];
     var cont = 0;
-    for(var i = 0; i < autores.size(); i++){
-        if(autores[i] == null) {
-            listaDeAutores[cont] = autores[i];
+    //console.log(autor.size)
+
+    for(var i = 0; i < 9; i++){
+        console.log(autor[i])
+        if(autor[i] != null) {
+            listaDeAutores[cont] = autor[i];
             cont++;
-            console.log(listaDeAutores);
         }
     }
+    for(var i=0;i<9;i++ ){
+        console.log(listaDeAutores[i]);
+    }
 
+}
+function PesquisaAutor() {
+    
 }
