@@ -18,6 +18,7 @@ public class Application extends Controller {
     public Result index() {
         return ok(index.render("SEBiblioteca"));
     }
+    public Result result() { return ok(result.render()); }
 
     /*0-9 v <volume>
     * digito 10 ou + é livro
@@ -132,8 +133,8 @@ public class Application extends Controller {
                         }
                     }
                     Saida.add(autores.get(nAleatorio[i]));
-                    System.out.println(Saida.get(i));
-                    System.out.println(nAleatorio[i]);
+                    //System.out.println(Saida.get(i));
+                    //System.out.println(nAleatorio[i]);
                 }
             }
             return ok(Json.toJson(Saida));
