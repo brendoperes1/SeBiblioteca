@@ -32,6 +32,10 @@ public class Application extends Controller {
             String genero= json.findPath("genero").asText();
             int paginas = json.findPath("npaginas").asInt();
 
+//            System.out.println(json.findPath(genero));
+//            System.out.println(json.toString());
+//            System.out.println(genero);
+//            System.out.println(paginas);
             List<Livro> livros = Ebean.find(Livro.class)
                     //.setDistinct(true)
                     .where()
@@ -42,84 +46,65 @@ public class Application extends Controller {
             //List<Livro> autores = new ArrayList<Livro>();
             List<String> autores = new ArrayList<String>();
             List<String> Saida=new ArrayList<String>();
-            System.out.println(json.toString());
             for (Livro L: livros) {
                 String pg = L.pagina;
-                if (pg!=null) {
-                   // System.out.println(pg);
-                    if ((pg.charAt(pg.length() - 1) == '.') && (pg.charAt(pg.length() - 2) == 'p')) {
-                        if ((pg.length() <= 5)) {
-                            if (paginas < 100) {
-                                autores.add(L.autor);
-                               // autores.add(L);
-                            }
-                        }else if ((pg.length()==6)) {
-                            if((paginas >= 100)&&(paginas < 300)){
-                                if((pg.charAt(0) == '1') || (pg.charAt(0) == '2'))
-                                    autores.add(L.autor);
-                                    //autores.add(L);
-
-                            }else if((paginas >= 300)&&(paginas < 400))
-                                if((pg.charAt(0) == '3') || (pg.charAt(0) == '4'))
-                                    autores.add(L.autor);
-                                    //autores.add(L);
-
-
-                        }else if((pg.charAt(0)!=' ')&&(paginas>=500)){
-                            //autores.add(L);
-                            autores.add(L.autor);
-                        }
-                        if((pg.charAt(0)==' ')&&(paginas<500)){
-                            if ((pg.length() <= 6)) {
+                if ((pg != null)&&(L.autor!=null)) {
+                    // System.out.println(pg);
+                    if((paginas==0)){
+                        autores.add(L.autor);
+                    }else{
+                        if ((pg.charAt(pg.length() - 1) == '.') && (pg.charAt(pg.length() - 2) == 'p')) {
+                            if ((pg.length() <= 5)) {
                                 if (paginas < 100) {
                                     autores.add(L.autor);
-                                    //autores.add(L);
                                 }
-                            } else if ((pg.length() == 7)) {
-                                if ((paginas >= 100) && (paginas < 300)) {
-                                    if ((pg.charAt(0) == '1') || (pg.charAt(0) == '2'))
-                                        //autores.add(L);
+                            } else if ((pg.length() == 6)) {
+                                if ((paginas >= 100) && (paginas < 200)) {
+                                    if ((pg.charAt(0) == '1'))
                                         autores.add(L.autor);
-                                }
-                                if ((paginas >= 300) && (paginas < 400))
-                                    if ((pg.charAt(0) == '3') || (pg.charAt(0) == '4'))
-                                        //autores.add(L);
+                                } else if ((paginas >= 200) && (paginas < 400))
+                                    if ((pg.charAt(0) == '2') || (pg.charAt(0) == '3'))
                                         autores.add(L.autor);
 
+                            } else if ((pg.charAt(0) != ' ') && (paginas >= 400)) {
+                                autores.add(L.autor);
+                            }
+                            if ((pg.charAt(0) == ' ') && (paginas < 500)) {
+                                if ((pg.length() <= 6)) {
+                                    if (paginas < 100) {
+                                        autores.add(L.autor);
+                                    }
+                                } else if ((pg.length() == 7)) {
+                                    if ((paginas >= 100) && (paginas < 200)) {
+                                        if ((pg.charAt(0) == '1'))
+                                            autores.add(L.autor);
+                                    }
+                                    if ((paginas >= 200) && (paginas < 400))
+                                        if ((pg.charAt(0) == '2') || (pg.charAt(0) == '3'))
+                                            autores.add(L.autor);
+                                } else if ((pg.length() >= 7) && paginas >= 400) {
+                                    autores.add(L.autor);
+                                }
                             }
                         }
                     }
 
-                    String aux=new String();
-                    for (int i=0;i<autores.size();i++){
-                        if(!aux.equals(autores.get(i))){
-                            aux=autores.get(i);
+                    String aux = new String();
+                    for (int i = 0; i < autores.size(); i++) {
+                        if (!aux.equals(autores.get(i))) {
+                            aux = autores.get(i);
 
-                        }else if(aux.equals(autores.get(i))){
+                        } else if (aux.equals(autores.get(i))) {
                             autores.remove(i);
                         }
-                        for(int j=i+1;j<autores.size();j++){
-                            if(aux.equals(autores.get(j))){
+                        for (int j = i + 1; j < autores.size(); j++) {
+                            if (aux.equals(autores.get(j))) {
                                 autores.remove(j);
                             }
                         }
                     }
-
-//                                else if(pg.charAt(0) == ' ') {
-//                                    if ((pg.charAt(1) == '1') || (pg.charAt(1) == '2') ) {
-//                                        autores.add(L);
-//                                    }
-//                        else if (pg.charAt(1) == '4') {
-//                            //autores.add(L.autor);
-//                            autores.add(L);
-//                        }else if (paginas > 999) {
-//                            //autores.add(L.autor);
-//                            autores.add(L);
-//                        }
-
-
                 }
-//                autores.add(pg);
+
             }
             if(autores.size()>20){
                 Random random = new Random();
@@ -133,13 +118,83 @@ public class Application extends Controller {
                         }
                     }
                     Saida.add(autores.get(nAleatorio[i]));
-                    //System.out.println(Saida.get(i));
-                    //System.out.println(nAleatorio[i]);
                 }
+                return ok(Json.toJson(Saida));
             }
-            return ok(Json.toJson(Saida));
+            else{
+                return ok(Json.toJson(autores));
+            }
+
         }
 
+    }
+    public Result Livros(){
+        JsonNode json = request().body().asJson();
 
+        if(json == null) {
+            return badRequest("Expecting Json data");
+        } else {
+            String autor = json.findPath("autor").asText();
+            int paginas = json.findPath("npaginas").asInt();
+            List<Livro> livros = Ebean.find(Livro.class)
+                    //.setDistinct(true)
+                    .where()
+                    .like("autor","%"+autor+"%")
+                    .findList();
+
+            List<Livro> selecionados = new ArrayList<Livro>();
+            for (Livro L: livros) {
+                String pg = L.pagina;
+                if (pg!=null) {
+                    // System.out.println(pg);
+                    if((paginas==0)&&(L.autor!=null)){
+                        selecionados.add(L);
+                    }else{
+                        if ((pg.charAt(pg.length() - 1) == '.') && (pg.charAt(pg.length() - 2) == 'p')) {
+                            if ((pg.length() <= 5)) {
+                                if (paginas < 100) {
+                                    selecionados.add(L);
+                                }
+                            } else if ((pg.length() == 6)) {
+                                if ((paginas >= 100) && (paginas < 200)) {
+                                    if ((pg.charAt(0) == '1'))
+                                        selecionados.add(L);
+
+                                } else if ((paginas >= 200) && (paginas < 400))
+                                    if ((pg.charAt(0) == '2') || (pg.charAt(0) == '3'))
+                                        selecionados.add(L);
+                                    else if (paginas >= 400) {
+                                        selecionados.add(L);
+                                    }
+
+                            } else if ((pg.charAt(0) != ' ') && (paginas >= 400) && (pg.length() >= 6)) {
+                                selecionados.add(L);
+                            }
+                            if ((pg.charAt(0) == ' ') && (paginas < 500)) {
+                                if ((pg.length() <= 6)) {
+                                    if (paginas < 100) {
+                                        selecionados.add(L);
+                                    }
+                                } else if ((pg.length() == 7)) {
+                                    if ((paginas >= 100) && (paginas < 200)) {
+                                        if ((pg.charAt(0) == '1'))
+                                            selecionados.add(L);
+                                    }
+                                    if ((paginas >= 200) && (paginas < 400))
+                                        if ((pg.charAt(0) == '2') || (pg.charAt(0) == '3'))
+                                            selecionados.add(L);
+                                        else if (paginas >= 400) {
+                                            selecionados.add(L);
+                                        }
+                                } else if ((pg.length() >= 7) && paginas >= 400) {
+                                    selecionados.add(L);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            return ok(Json.toJson(selecionados));
+        }
     }
 }

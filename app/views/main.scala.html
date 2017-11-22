@@ -97,29 +97,132 @@
             <div>
                     <!--  Details -->
                 <div class="form-group">
-                    <h2 class="heading">Numero de Paginas (Obrigatório!)</h2>
-                    <div class="controls">
-                        <i class="fa fa-sort"></i>
-                        <select id="tamanho" class="floatLabel">
-                            <option value="indiferente">Indiferente</option>
-                            <option value="pequeno">0 - 199</option>
-                            <option value="medio">200 - 399</option>
-                            <option value="grande">400 +</option>
-                        </select>
-                    </div>
-                </div>
-            <div class="form-group">
+                <h2 class="heading">Numero de Paginas (Obrigatório!)</h2>
                 <div class="controls">
-                    <button type="button" onclick="myFunction();Tamanho()" >Ok</button>
+                    <i class="fa fa-sort"></i>
+                    <select id="tamanho" class="floatLabel">
+                        <option value=0>Indiferente</option>
+                        <option value=99>0 - 99</option>
+                        <option value=100>100 - 199</option>
+                        <option value=200>200 - 399</option>
+                        <option value=400>400 +</option>
+                    </select>
+                </div>
+                </div>
+                    <div class="form-group">
+                        <div class="controls">
+                            <button type="button" onclick="charge()" >GERAR AUTORES</button>
+                            <div id="autores"></div>
+                        </div>
+                    </div>
+                        <a type="button" style="align-self: center" href="#0" onclick="fillTable()" class="modalbttn">Pesquisar</a>
+
+
+            </div>
+            <div class="flex">
+                <div class="modalcontainer">
+                    <div class="flex">
+                        <div class="modal">
+                            <div class="close"><span>+</span></div>
+                            <div class="content">
+                                <table  class="table table-dark" id="Resposta"></table >
+                            </div>
+                            <div class="buttons">
+                                <a href="#0">Cancelar</a>
+                                <a href="#0">Ok</a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </form>
+
+
         <script>
+    $(".modalbttn").click(function() {
+        $(".modalcontainer").fadeIn("slow");
+        $(".modal").fadeIn("slow");
+    });
+
+    $(".close").click(function() {
+        $(".modalcontainer").fadeOut("slow");
+        $(".modal").fadeOut("slow");
+    });
+
+    $(".buttons").click(function() {
+        $(".modalcontainer").fadeOut("slow");
+        $(".modal").fadeOut("slow");
+    });
+</script>
+        <script>
+            function charge(){
+                var tamanho=Tamanho();
+                var Select=myFunction();
+                var query;
+                query={
+                    "genero":Select,
+                    "npaginas":tamanho
+                };
+                var json = JSON.stringify(query);
+                console.log(json);
+                $.ajax({
+                    type: 'POST',
+                    contentType: 'application/json',
+                    dataType: 'json',
+                    async: false,
+                    data: JSON.stringify(query),
+                    contentType: "application/json; charset=utf-8",
+                    url: '/autores',
+                    success: function (json) {
+                        n_indices = json.length;
+                        for(var i=0;i<json.length;i++) {
+                            obj=json[i];
+                            $('<input type="radio" value='+obj+' name="autor" >'+obj+'</input>').appendTo('#autores');
+                        }
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        window.alert("Erro");
+                    }
+                });
+            }
+            function fillTable() {
+                var tamanho=Tamanho();
+                //var Select=myFunction();
+                //"genero":Select,
+                var autor=autores();
+                var query;
+                query={
+                    "autor":autor,
+                    "npaginas":tamanho
+                };
+                var json = JSON.stringify(query);
+                console.log(json);
+                $.ajax({
+                    type: 'POST',
+                    contentType: 'application/json',
+                    dataType: 'json',
+                    async: false,
+                    data: JSON.stringify(query),
+                    contentType: "application/json; charset=utf-8",
+                    url: '/Livros',
+                    success: function (json) {
+                        n_indices = json.length;
+                        for(var i=0;i<json.length;i++) {
+                            obj=json[i];
+                            $('<tr>').html("<td>"+obj.cod_acervo+" </td><td>" + obj.autor + "</td><td>" + obj.titulo + "</td><td>" + obj.pagina + "</td>").appendTo('#Resposta');
+                        }
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        window.alert("Erro");
+                    }
+                });
+            }
             function Tamanho (){
                 if((document.getElementById("tamanho").value) != "indiferente"){
                     var y = document.getElementById("tamanho").value;
                     document.getElementById("tamanho");
                     console.log(y);
+                    return y;
                 }
             }
 
@@ -129,21 +232,36 @@
                     var x = document.getElementById("mySelect").value;
                     document.getElementById("mySelect");
                     console.log(x);
+                    return x;
+
                 }else if ((document.getElementById("mySelect2").value) != "null2"){
                     var x = document.getElementById("mySelect2").value;
                     document.getElementById("mySelect2");
                     console.log(x);
+                    return x;
                 }
                 else if ((document.getElementById("mySelect3").value) != "null3"){
                     var x = document.getElementById("mySelect3").value;
                     document.getElementById("mySelect3");
                     console.log(x);
+                    return x;
                 }
                 else if ((document.getElementById("mySelect4").value) != "null4"){
                     var x = document.getElementById("mySelect4").value;
                     document.getElementById("mySelect4");
                     console.log(x);
+                    return x;
                 }
+            }
+            function autores(){
+                var autor = document.getElementsByName("autor");
+                var selectedAutor;
+                for (var j=0;j<autor.length;j++){
+                    if(autor[j].checked)
+                        selectedAutor = autor[j].value;
+                }
+                console.log(selectedAutor);
+                return selectedAutor;
             }
         </script>
         <script src='//production-assets.codepen.io/assets/common/stopExecutionOnTimeout-b2a7b3fe212eaa732349046d8416e00a9dec26eb7fd347590fbced3ab38af52e.js'></script><script src='//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
