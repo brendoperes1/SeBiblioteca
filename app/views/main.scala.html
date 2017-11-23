@@ -122,6 +122,7 @@
                         <a class=" button modalbttn" style="align-self: center" href="#openModal" onclick="fillTable()" >Pesquisar</a>
                             <div id="openModal" class="modal">
                                 <div class="content-modal">
+                                    <p id="restricoes">Resultados Obtidos através do concatenamento de restrições:</p>
                                     <table  class="table" >
                                         <thead>
                                             <tr>
@@ -158,6 +159,7 @@
         $(".modalcontainer").fadeOut("slow");
         $(".modal").fadeOut("slow");
     });
+
 </script>
         <script>
             function charge(){
@@ -183,6 +185,7 @@
                         for(var i=0;i<json.length;i++) {
                             obj=json[i];
                             $('<input type="radio" value='+obj+' name="autor" >'+obj+'</input>').appendTo('#autores');
+
                         }
                     },
                     error: function (jqXHR, textStatus, errorThrown) {
@@ -192,16 +195,16 @@
             }
             function fillTable() {
                 var tamanho=Tamanho();
-                //var Select=myFunction();
-                //"genero":Select,
                 var autor=autores();
                 var query;
                 query={
                     "autor":autor,
                     "npaginas":tamanho
                 };
+
                 var json = JSON.stringify(query);
                 console.log(json);
+
                 $.ajax({
                     type: 'POST',
                     contentType: 'application/json',
@@ -212,10 +215,13 @@
                     url: '/Livros',
                     success: function (json) {
                         n_indices = json.length;
+                        $('<t>').html(myFunction()+'>'+autores()+'>'+Tamanho()).appendTo('#restricoes');
                         for(var i=0;i<json.length;i++) {
                             obj=json[i];
                             $('<tr>').html("<td>"+obj.cod_acervo+" </td><td>" + obj.autor + "</td><td>" + obj.titulo + "</td><td>" + obj.pagina + "</td>").appendTo('#Resposta');
                         }
+
+
                     },
                     error: function (jqXHR, textStatus, errorThrown) {
                         window.alert("Erro");
